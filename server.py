@@ -3,6 +3,7 @@ import os, sys, shutil
 from starlette.applications import Starlette
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
+from starlette.middleware.cors import CORSMiddleware
 import uvicorn
 from fastai.basic_train import *
 from fastai.vision import *
@@ -10,6 +11,7 @@ from fastai.vision import *
 from spectrogram import generate_spectrogram
 
 app = Starlette()
+app.add_middleware(CORSMiddleware, allow_origins=['*'])
 app.mount('/static', StaticFiles(directory='static'))
 
 path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
