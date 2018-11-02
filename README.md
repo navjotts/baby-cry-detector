@@ -12,5 +12,5 @@ $ pip install librosa matplotlib
 
 ### Demo
 ```
-$ python server.py
+$ python server.py run
 ```
