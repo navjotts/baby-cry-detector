@@ -48,7 +48,7 @@ function uploadAudio(blob) {
 
 function backToInitialState() {
     $('#display').html(htmlForRecord());
-    $('#try_again').html('');
+    $('#try_again').html("<button class=\"try_again_button\" type=\"button\" onclick=\"backToInitialState()\">Upto 5 seconds</button>");
 }
 
 function htmlForRecord() {

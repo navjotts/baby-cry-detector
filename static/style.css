@@ -36,7 +36,6 @@ button.try_again_button {
   border: 0;
   font-size: 14px;
   color: #262626;
-  text-decoration: underline;
 }
 
 button:focus {outline:0;}
