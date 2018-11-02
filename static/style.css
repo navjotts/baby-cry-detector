@@ -1,0 +1,47 @@
+.center {
+    margin: auto;
+    padding: 10px;
+    padding-left:50px;
+    padding-right:50px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.title {
+    font-size: 30px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #262626;
+}
+
+.content {
+    margin-top: 10em;
+}
+
+button.record_button {
+    width: 219px;
+    height: 40px;
+    border: solid 1px #7052CB;
+    border-radius: 2px;
+    background-color: #7052CB;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+button.try_again_button {
+  width: 160px;
+  height: 40px;
+  padding-top:10px;
+  background-color: #ffffff;
+  border: 0;
+  font-size: 14px;
+  color: #262626;
+  text-decoration: underline;
+}
+
+button:focus {outline:0;}
+
+.label {
+    font-size: 14px;
+    padding-bottom: 10px;
+}
