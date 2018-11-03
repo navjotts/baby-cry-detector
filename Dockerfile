@@ -18,4 +18,4 @@ RUN python server.py
 
 EXPOSE 5042
 
-CMD ['python', 'server.py', 'run']
+CMD ["python", "server.py", "run"]
