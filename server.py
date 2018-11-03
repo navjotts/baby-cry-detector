@@ -23,11 +23,13 @@ learn.load('stage-2')
 
 @app.route('/')
 def index(request):
+    print(request.url)
     html = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'view', 'index.html')
     return HTMLResponse(open(html, 'r', encoding='utf-8').read())
 
 @app.route('/analyze', methods=['POST'])
 async def analyze(request):
+    print(request.url)
     data = await request.form()
     audio = await (data['file'].read())
     uploadpath = os.path.join(path, 'uploads')
