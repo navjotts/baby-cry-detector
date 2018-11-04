@@ -11,7 +11,7 @@ from fastai.vision import *
 from spectrogram import generate_spectrogram
 
 app = Starlette()
-app.add_middleware(CORSMiddleware, allow_origins=['*'])
+app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
 app.mount('/static', StaticFiles(directory='static'))
 
 path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')

@@ -1,4 +1,4 @@
-const HOSTURL = 'http://localhost:5042';
+const HOSTURL = 'https://baby-cry-detector.now.sh';
 
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioStream;
