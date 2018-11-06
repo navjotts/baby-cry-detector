@@ -6,3 +6,4 @@ uvicorn
 python-multipart
 aiofiles
 librosa
+pydub
