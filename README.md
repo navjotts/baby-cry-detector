@@ -15,6 +15,7 @@ $ python server.py run
 * URL: [https://baby-cry-detector.now.sh/](https://baby-cry-detector.now.sh/)
 * branch: [release_docker](https://github.com/navjotts/baby-cry-detector/tree/release_docker) (only has files needed for Inference)
 
+---
 ### Training
 1. Data Collection
     * We used [https://freesound.org/](https://freesound.org/) to collect audio files, augmented with [https://urbansounddataset.weebly.com/urbansound8k.html](https://urbansounddataset.weebly.com/urbansound8k.html)
@@ -26,8 +27,9 @@ $ python server.py run
     * The audio files are split into smaller chunks of audio to capture different patterns that can occur
     * The audio is then converted into spectrograms - on which we then tried different Image Classification models
 3. Results
-    * CNN with Transfer Learning from a resnet34 seems to be performing extremely good (with a CV split of 0.2)
+    * CNN with Transfer Learning from a pre-trained resnet34 seems to be performing extremely good (with a CV split of 0.2)
 
+---
 ### TODOs
 1. Add continuous audio support - where the user presses the START button and leaves the app (on a device) - and the app can detect whenever the baby starts crying (we'll just run the current process every `'x'` seconds on repeat until stopped by the user)
 2. Integrate with Twilio API for an option to send a message to the user when a baby cry is detected
