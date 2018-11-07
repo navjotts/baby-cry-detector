@@ -16,8 +16,8 @@ app.mount('/static', StaticFiles(directory='static'))
 
 path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
 data_bunch = ImageDataBunch.single_from_classes(path, [0, 1],
-                                            tfms=get_transforms(do_flip=False, max_rotate=0., max_lighting=0., max_warp=0.),
-                                            size=224).normalize(imagenet_stats)
+    tfms=get_transforms(do_flip=False, max_rotate=0., max_lighting=0., max_warp=0.),
+    size=224).normalize(imagenet_stats)
 learn = create_cnn(data_bunch, models.resnet34)
 learn.load('stage-2')
 
@@ -34,15 +34,12 @@ async def analyze(request):
     try:
         os.makedirs(uploadpath)
         filepath = os.path.join(uploadpath, 'test.wav')
-        f = open(filepath, 'wb')
-        f.write(audio)
-        f.close()
-        img_filepath = generate_spectrogram(filepath)
-        pred_class, _, _ = learn.predict(open_image(img_filepath))
+        with open(filepath, 'wb') as f: f.write(audio)
+        img = open_image(generate_spectrogram(filepath))
     finally:
         shutil.rmtree(uploadpath)
 
-    return JSONResponse({'crying': pred_class})
+    return JSONResponse({'crying': learn.predict(img)[0]})
 
 if __name__ == '__main__':
     if 'run' in sys.argv:
