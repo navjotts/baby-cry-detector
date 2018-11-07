@@ -1,4 +1,5 @@
-const HOSTURL = 'http://localhost:5042';
+var loc = window.location;
+const HOSTURL = `${loc.protocol}//${loc.hostname}:${loc.port}`;
 
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioStream;
