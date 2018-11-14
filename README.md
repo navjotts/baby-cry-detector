@@ -31,7 +31,7 @@ $ python server.py run
 
 ---
 ### TODOs
-1. Add continuous audio support - where the user presses the START button and leaves the app (on a device) - and the app can detect whenever the baby starts crying (we can run the current process every `'x'` seconds on repeat until stopped by the user)
+1. Add continuous audio support - where the user presses the START button and leaves the app (on a device) - and the app can detect whenever the baby starts crying (we can just run the current process every `'x'` seconds on repeat until stopped by the user)
 2. Integrate with Twilio API for an option to send a message to the user when a baby cry is detected
 3. Similar/Alternate to above, have a simple mobile app which could send out a notification when a baby cry is detected
 4. Improve the dataset with more different kinds of audio sounds that can confuse the model
