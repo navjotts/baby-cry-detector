@@ -23,6 +23,7 @@ $ python server.py run
     * We tried to make a robust dataset, like
         * having different animal cries which could be similar to a human baby cry
         * having silence as some of the training samples
+    * No effort was put into trying to differentiate between a baby laugh v/s a baby cry – as the need was to detect whether a sleeping infant is up (babies normally cry once up), and even a laughing (or any sound) baby should trigger the alarm for parents (if needed, this could be attempted, and would be the real test for the model)
 2. Data Preprocessing
     * The audio files are split into smaller chunks of audio to capture different patterns that can occur
     * The audio is then converted into spectrograms - on which we then tried different Image Classification models
