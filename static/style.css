@@ -49,3 +49,10 @@ button:focus {outline:0;}
     border-bottom: 1px solid #846cd5;
     padding-bottom: 0.5em;
 }
+
+.footer {
+    font-size: 14px;
+    color: #262626;
+    padding-top: 10em;
+    padding-bottom:10em;
+}
