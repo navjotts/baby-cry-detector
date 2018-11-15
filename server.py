@@ -18,7 +18,7 @@ path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
 data_bunch = ImageDataBunch.single_from_classes(path, [0, 1],
     tfms=get_transforms(do_flip=False, max_rotate=0., max_lighting=0., max_warp=0.),
     size=224).normalize(imagenet_stats)
-learn = create_cnn(data_bunch, models.resnet34)
+learn = create_cnn(data_bunch, models.resnet34, pretrained=False)
 learn.load('stage-2')
 
 @app.route('/')
