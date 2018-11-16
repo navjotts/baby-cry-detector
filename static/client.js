@@ -49,7 +49,7 @@ function uploadAudio(blob) {
 
 function backToInitialState() {
     $('#display').html(htmlForRecord());
-    $('#try_again').html("<button class=\"try_again_button\" type=\"button\" onclick=\"backToInitialState()\">Upto 5 seconds</button>");
+    $('#try_again').html("<button class=\"secondary_button\" type=\"button\" onclick=\"backToInitialState()\">Upto 5 seconds</button>");
 }
 
 function htmlForRecord() {
@@ -66,11 +66,11 @@ function htmlForAnalyzing() {
 
 function htmlForResult(prediction) {
     if (prediction) {
-        return "<button class=\"record_button\" type=\"button\">CRYING :(</button>";
+        return "<button class=\"record_button\" type=\"button\" onclick=\"backToInitialState()\">CRYING :(</button>";
     }
-    return "<button class=\"record_button\" type=\"button\">NOT CRYING :)</button>";
+    return "<button class=\"record_button\" type=\"button\" onclick=\"backToInitialState()\">NOT CRYING :)</button>";
 }
 
 function htmlForTryAgain() {
-    return "<button class=\"try_again_button\" type=\"button\" onclick=\"backToInitialState()\">Try again</button>";
+    return "<button class=\"secondary_button\" type=\"button\" onclick=\"backToInitialState()\">Try again</button>";
 }
