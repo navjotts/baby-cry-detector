@@ -31,6 +31,7 @@ button.record_button {
     background-color: #846cd5;
     color: #ffffff;
     font-size: 16px;
+    cursor: pointer;
 }
 
 button.secondary_button {
