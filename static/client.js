@@ -72,5 +72,5 @@ function htmlForResult(prediction) {
 }
 
 function htmlForTryAgain() {
-    return "<button class=\"secondary_button\" type=\"button\" onclick=\"backToInitialState()\">Try again</button>";
+    return "<button class=\"secondary_button\" style=\"cursor: pointer;\" type=\"button\" onclick=\"backToInitialState()\">Try again</button>";
 }
