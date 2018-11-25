@@ -2,4 +2,4 @@
 *.pyc
 *.DS_Store
 *~
-
+conf.json
