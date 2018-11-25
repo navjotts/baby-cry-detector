@@ -62,3 +62,12 @@ button:focus {outline:0;}
     padding-top: 10em;
     padding-bottom:10em;
 }
+
+.text-input {
+    margin: 2em;
+}
+
+.text-label {
+    padding: 10px;
+    font-size: 14px;
+}

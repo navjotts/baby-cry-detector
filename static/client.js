@@ -59,7 +59,7 @@ function uploadAudio(blob) {
 
 function chunkEnded(result) {
     if (stopped) {return;}
-    var number = '+16507402077';
+    var number = document.getElementById('phone-input').value;
     if (number && result) {
         $.ajax({
             url: `${HOSTURL}/notify?number=${number}`,
