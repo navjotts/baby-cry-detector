@@ -24,8 +24,8 @@ learn = create_cnn(data_bunch, models.resnet34, pretrained=False)
 learn.load('stage-2')
 
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'conf.json'), 'r') as f:
-    trello = json.load(f)['trello']
-    client = Client(trello['account_sid'], trello['auth_token'])
+    twilio = json.load(f)['twilio']
+    client = Client(twilio['account_sid'], twilio['auth_token'])
 
 @app.route('/')
 def index(request):
@@ -54,7 +54,7 @@ def notify(request):
         message = client.messages \
                         .create(
                             body="Baby is crying!",
-                            from_=trello['from_'],
+                            from_=twilio['from_'],
                             to=request.query_params['number']
                         )
         return JSONResponse({'success': True})
