@@ -4,8 +4,11 @@ const HOSTURL = `${loc.protocol}//${loc.hostname}:${loc.port}`;
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioStream;
 var recorder;
+var audioChunkInterval = 5000; // 5 seconds
+var stopped = false;
 
 function startRecording() {
+    stopped = false;
     $('#display').html(htmlForRecording());
     navigator.mediaDevices.getUserMedia({audio: true, video: false}).then(function(stream) {
         var audioContext = new AudioContext();
@@ -18,9 +21,16 @@ function startRecording() {
         console.log('recording failed...', err);
         backToInitialState();
     });
+
+    setTimeout(stopChunk, audioChunkInterval);
 }
 
 function stopRecording() {
+    stopped = true;
+    $('#display').html(htmlForStopping());
+}
+
+function stopChunk() {
     recorder.stop();
     audioStream.getAudioTracks()[0].stop(); // microphone access
     recorder.exportWAV(uploadAudio);
@@ -39,7 +49,7 @@ function uploadAudio(blob) {
         success: function(response) {
             console.log('uploadAudio()', response);
             $('#display').html(htmlForResult(response['crying']));
-            $('#try_again').html(htmlForTryAgain());
+            chunkEnded(response['crying'])
         },
         error: function(response) {
             $('#try_again').html(htmlForTryAgain());
@@ -47,28 +57,49 @@ function uploadAudio(blob) {
     });
 }
 
+function chunkEnded(result) {
+    if (stopped) {return;}
+    var number = document.getElementById('phone-input').value;
+    if (number && result) {
+        $.ajax({
+            url: `${HOSTURL}/notify?number=${number}`,
+            success: function(response) {
+                console.log('notify()', response);
+            },
+            error: function(response) {
+                $('#try_again').html(htmlForTryAgain());
+            }
+        });
+    }
+    startRecording();
+}
+
 function backToInitialState() {
     $('#display').html(htmlForRecord());
-    $('#try_again').html("<button class=\"secondary_button\" type=\"button\" onclick=\"backToInitialState()\">Upto 5 seconds</button>");
+    $('#try_again').html("<button class=\"secondary_button\" type=\"button\" onclick=\"backToInitialState()\">Listening to audio</button>");
 }
 
 function htmlForRecord() {
-    return "<button class=\"record_button\" type=\"button\" onclick=\"startRecording()\">RECORD</button>";
+    return "<button id=\"record_button\" class=\"record_button\" type=\"button\" onclick=\"startRecording()\">START</button>";
 }
 
 function htmlForRecording() {
-    return "<button class=\"record_button\" type=\"button\" onclick=\"stopRecording()\">STOP</button>";
+    return "<button id=\"record_button\" class=\"record_button\" type=\"button\" onclick=\"stopRecording()\">STOP</button>";
+}
+
+function htmlForStopping() {
+    return "<button id=\"record_button\" class=\"record_button\" type=\"button\">STOPPING</button>";
 }
 
 function htmlForAnalyzing() {
-    return "<button class=\"record_button\" type=\"button\">Analyzing...</button>";
+    return "<button id=\"record_button\" class=\"record_button\" type=\"button\">Analyzing...</button>";
 }
 
 function htmlForResult(prediction) {
     if (prediction) {
-        return "<button class=\"record_button\" type=\"button\" onclick=\"backToInitialState()\">CRYING :(</button>";
+        return "<button id=\"record_button\" class=\"record_button\" type=\"button\" onclick=\"backToInitialState()\">CRYING :(</button>";
     }
-    return "<button class=\"record_button\" type=\"button\" onclick=\"backToInitialState()\">NOT CRYING :)</button>";
+    return "<button id=\"record_button\" class=\"record_button\" type=\"button\" onclick=\"backToInitialState()\">NOT CRYING :)</button>";
 }
 
 function htmlForTryAgain() {

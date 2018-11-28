@@ -6,6 +6,7 @@ RUN apt install -y python3-dev gcc
 ADD requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
+ADD conf.json conf.json
 ADD server.py server.py
 ADD spectrogram.py spectrogram.py
 ADD view/index.html view/index.html
